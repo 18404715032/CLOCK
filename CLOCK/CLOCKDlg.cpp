@@ -51,6 +51,9 @@ END_MESSAGE_MAP()
 
 CCLOCKDlg::CCLOCKDlg(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CCLOCKDlg::IDD, pParent)
+	, m_h(0)
+	, m_m(0)
+	, m_s(0)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
 }
@@ -58,6 +61,9 @@ CCLOCKDlg::CCLOCKDlg(CWnd* pParent /*=NULL*/)
 void CCLOCKDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Text(pDX, IDC_EDIT1, m_h);
+	DDX_Text(pDX, IDC_EDIT2, m_m);
+	DDX_Text(pDX, IDC_EDIT3, m_s);
 }
 
 BEGIN_MESSAGE_MAP(CCLOCKDlg, CDialogEx)
@@ -66,6 +72,7 @@ BEGIN_MESSAGE_MAP(CCLOCKDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(ID_CLOCK, &CCLOCKDlg::OnBnClickedClock)
 	ON_WM_MOUSEMOVE()
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -101,7 +108,7 @@ BOOL CCLOCKDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
-
+	SetTimer(1,1000,NULL);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -159,29 +166,82 @@ HCURSOR CCLOCKDlg::OnQueryDragIcon()
 void CCLOCKDlg::OnBnClickedClock()
 {
 	// TODO: 在此添加控件通知处理程序代码
-		CClientDC dc(this);
-	dc.SetWindowOrg(-150,-150);
-	CPen *oldpen;
-	CPen Pen(PS_SOLID,3,RGB(0,255,255));
-	oldpen=dc.SelectObject(&Pen);
-	dc.Ellipse(-100,100,100,-100);
-	dc.Ellipse(-3,-3,3,3);
-	for(int i=0;i<12;i++)
-	{
-		double l=96,ag=i*3.14159/6;
-		double a=l*sin(ag)+1,b=-l*cos(ag)+1,c=l*sin(ag)-1,d=l*cos(ag)-1;
-		dc.Ellipse(a,b,c,d);
-	}
-	dc.TextOutW(-8,-90,L"12");
-	dc.TextOutW(80,-8,L"3");
-	dc.TextOutW(-4,76,L"6");
-	dc.TextOutW(-86,-8,L"9");
+	SetTimer(1,1000,NULL);
 }
 
 
 void CCLOCKDlg::OnMouseMove(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
-	TRACE("X=%d ,Y=%d\n",point.x,point.y);
+    TRACE("X=%d ,Y=%d\n",point.x,point.y);
 	CDialogEx::OnMouseMove(nFlags, point);
+}
+
+
+void CCLOCKDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	int l1=70,l2=50,l3=30;
+	CTime t=CTime::GetCurrentTime();//获取系统时间
+	m_h=t.GetHour();
+	m_m=t.GetMinute();
+	m_s=t.GetSecond();
+	UpdateData(false);
+	CDC *pdc;
+	pdc=GetDC();
+	pdc->SetWindowOrg(-150,-150);
+	CPen *oldpen;
+	CPen Pen(PS_SOLID,3,RGB(0,255,255));
+	oldpen=pdc->SelectObject(&Pen);
+	pdc->Ellipse(-100,100,100,-100);
+	pdc->Ellipse(-3,-3,3,3);
+	for(int i=0;i<12;i++)
+	{
+		double l=96,ag=i*3.14159/6;
+		double a=l*sin(ag)+1,b=-l*cos(ag)+1,c=l*sin(ag)-1,d=-l*cos(ag)-1;
+		pdc->Ellipse(a,b,c,d);
+	}
+	pdc->TextOutW(-8,-90,L"12");
+	pdc->TextOutW(80,-8,L"3");
+	pdc->TextOutW(-4,76,L"6");
+	pdc->TextOutW(-86,-8,L"9");
+
+	CPen whitepen(PS_SOLID,4,RGB(255,255,255));
+	pdc->SelectObject(&whitepen);
+	x=l1*sin(m_s*(3.1415926/30)-(3.1415926/30));
+	y=l1*-cos(m_s*(3.1415926/30)-(3.1415926/30));
+	pdc->MoveTo(0,0);
+	pdc->LineTo(x,y);
+	CPen pen1(PS_SOLID,2,RGB(255,0,0));
+	pdc->SelectObject(&pen1);
+	x=l1*sin(m_s*(3.1415926/30));
+	y=l1*-cos(m_s*(3.1415926/30));
+	pdc->MoveTo(0,0);
+	pdc->LineTo(x,y);
+
+	pdc->SelectObject(&whitepen);
+	x=l2*sin(m_m*(3.1415926/30)+m_s*(3.1415926/1800));
+	y=l2*-cos(m_m*(3.1415926/30)+m_s*(3.1415926/1800));
+	pdc->MoveTo(0,0);
+	pdc->LineTo(x,y);
+	CPen pen2(PS_SOLID,2,RGB(0,0,0));
+	pdc->SelectObject(&pen2);
+	x=l2*sin(m_m*(3.1415926/30)+m_s*(3.1415926/1800));
+	y=l2*-cos(m_m*(3.1415926/30)+m_s*(3.1415926/1800));
+	pdc->MoveTo(0,0);
+	pdc->LineTo(x,y);
+
+	pdc->SelectObject(&whitepen);
+	x=l3*sin(m_h*(3.1415926/30)+m_m*(3.1415926/1800)+m_s*(3.1415926/10800)+3.1415926);
+	y=l3*-cos(m_h*(3.1415926/30)+m_m*(3.1415926/1800)+m_s*(3.1415926/10800)+3.1415926);
+	pdc->MoveTo(0,0);
+	pdc->LineTo(x,y);
+	CPen pen3(PS_SOLID,2,RGB(0,0,0));
+	pdc->SelectObject(&pen3);
+	x=l3*sin(m_h*(3.1415926/30)+m_m*(3.1415926/1800)+m_s*(3.1415926/10800)+3.1415926);
+	y=l3*-cos(m_h*(3.1415926/30)+m_m*(3.1415926/1800)+m_s*(3.1415926/10800)+3.1415926);
+	pdc->MoveTo(0,0);
+	pdc->LineTo(x,y);
+
+	CDialogEx::OnTimer(nIDEvent);
 }

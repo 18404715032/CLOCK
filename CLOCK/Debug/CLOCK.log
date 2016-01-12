@@ -1,18 +1,27 @@
-﻿生成启动时间为 2016/1/10 20:27:45。
+﻿生成启动时间为 2016/1/12 11:12:47。
      1>项目“C:\Users\dell\Desktop\作业\CLOCK\CLOCK\CLOCK.vcxproj”在节点 2 上(build 个目标)。
      1>InitializeBuildStatus:
          正在创建“Debug\CLOCK.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
        ClCompile:
          所有输出均为最新。
-         E:\vvs20101010\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\CLOCK.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CLOCK.cpp CLOCKDlg.cpp
+         E:\vvs20101010\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _WINDOWS /D _DEBUG /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"StdAfx.h" /Fp"Debug\CLOCK.pch" /Fo"Debug\\" /Fd"Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CLOCKDlg.cpp
          CLOCKDlg.cpp
-     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(173): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(173): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(173): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(173): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
-         正在生成代码...
-         正在跳过...(未检测到相关更改)
-         CLOCK.cpp
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(202): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(202): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(202): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(202): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(214): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(214): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(220): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(220): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(226): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(226): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(232): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(232): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(238): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(238): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(244): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
+     1>c:\users\dell\desktop\作业\clock\clock\clockdlg.cpp(244): warning C4244: “参数”: 从“double”转换到“int”，可能丢失数据
        ResourceCompile:
          所有输出均为最新。
        ManifestResourceCompile:
@@ -36,4 +45,4 @@
 
 生成成功。
 
-已用时间 00:00:00.71
+已用时间 00:00:06.59
